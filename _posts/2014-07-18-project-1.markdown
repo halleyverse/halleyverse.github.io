@@ -5,8 +5,7 @@ date: 2014-07-18
 img: cabin.png
 alt: image-alt
 #project-date: April 2014
-#client: Ph.D.
+references: Bali et al
 category: Ph.D. project
 description: Novel compound development for Tuberculosis treatment. 
-references: Bali etal
 ---
