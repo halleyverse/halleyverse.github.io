@@ -42,7 +42,7 @@ hr.rounded {
     padding: 0;
     max-width: 250px;
     border: 0;
-    border-top: solid 5px;
+    border-top: solid 10px;
     border-radius: 10px
     text-align: center;
     overflow: visible;
