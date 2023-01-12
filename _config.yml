@@ -1,11 +1,12 @@
 # Site settings
-title: Freelancer
+title: Semiha K. Bali
 email: semihakvsr@gmail.com
 url: https://github.com/halleyverse
-description: "Write an awesome description for your new site here. You can edit this line in _config.yml. It will appear in your document head meta (for Google search results) and in your feed.xml site description."
-keywords: "your keywords, separated by commas"
+description: "Hello! My name is Semiha Bali and I am a Ph.D. candidate in Department of Chemistry, Michigan State University.
+#(for Google search results) and in your feed.xml site description."
+keywords: "Semiha Bali, Semiha Kevser Bali, MSU, Michigan State University, Chemistry, Computational Chemistry"
 skills: "Ph.D. Candidate"
-meta_author: Bali Semiha Kevser
+meta_author: Bali Semiha
 
 # Google webmaster tools
 google_verify:
