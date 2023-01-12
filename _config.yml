@@ -1,11 +1,12 @@
 # Site settings
-title: 
+title: Semiha K. Bali
 email: semihakvsr@gmail.com
 url: https://github.com/halleyverse
 description: "Hello! My name is Semiha Bali and I am a Ph.D. candidate in Department of Chemistry, Michigan State University.
 #(for Google search results) and in your feed.xml site description."
-keywords: "Semiha Bali, Semiha Kevser Bali, MSU, Michigan State University, Chemistry, Computational Chemistry"
-skills: "Ph.D. Candidate"
+keywords: "Semiha Bali, Semiha Kevser Bali, MSU, Michigan State University, Chemistry, Computational Chemistry, tuberculosis, drug discovery"
+skills: Hello! My name is Semiha Bali and I am a Ph.D. candidate in Department of Chemistry, Michigan State University.
+#"Ph.D. Candidate"
 meta_author: Bali Semiha
 
 # Google webmaster tools
