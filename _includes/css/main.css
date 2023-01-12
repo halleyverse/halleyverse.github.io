@@ -48,8 +48,8 @@ hr.rounded {
     overflow: visible;
 }
 
-hr.rounded-light:after,
-hr.rounded:after {
+hr.star-light:after,
+hr.star-primary:after {
     content: "\f005";
     display: inline-block;
     position: relative;
@@ -59,20 +59,20 @@ hr.rounded:after {
     font-size: 2em;
 }
 
-hr.rounded-light {
+hr.star-light {
     border-color: #fff;
 }
 
-hr.rounded-light:after {
+hr.star-light:after {
     color: #fff;
     background-color: #{{ site.color.primary }};
 }
 
-hr.rounded {
+hr.star-primary {
     border-color: #{{ site.color.secondary }};
 }
 
-hr.rounded:after {
+hr.star-primary:after {
     color: #{{ site.color.secondary }};
     background-color: #fff;
 }
