@@ -37,7 +37,7 @@ h6 {
 }
 
 hr.rounded-light,
-hr.rounded-primary {
+hr.rounded {
     margin: 25px auto 30px;
     padding: 0;
     max-width: 250px;
