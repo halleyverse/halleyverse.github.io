@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import researchCover from '../../assets/research/research-cover-art.png';
+import PageIntro from '../../components/PageIntro.astro';
+import ResearchGallery from '../../components/ResearchGallery.astro';
+import ResearchProjectCard from '../../components/ResearchProjectCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+const research = (await getCollection('research', ({ data }) => data.complete))
+  .sort((a, b) => a.data.order - b.data.order);
+
+const heroSlides = [{
+  image: researchCover,
+  alt: 'Molecular visualization of a protein and nucleic-acid complex with bound compounds.',
+}];
+
+---
+
+<BaseLayout title="Research" description="Research in molecular modeling, therapeutic design, predictive methods, environmental toxicology, and biomolecular interfaces.">
+  <PageIntro
+    title="Research"
+    description="My research uses physics-based molecular modeling to understand how molecular structure, dynamics, and chemical environment govern recognition, reactivity, and biological function. I combine molecular dynamics, enhanced sampling, free-energy calculations, quantum chemistry, QM/MM, and cheminformatics across drug discovery, predictive method development, environmental toxicology, and complex biomolecular interfaces."
+  >
+    <ResearchGallery slot="media" slides={heroSlides} label="Research overview image" />
+  </PageIntro>
+
+  <div class="research-themes shell">
+    {research.map((entry) => {
+      const featuredProjects = entry.data.projects.filter((project) => project.featured);
+      const additionalProjects = entry.data.projects.filter((project) => !project.featured);
+
+      return (
+        <section class="research-theme" id={entry.id} aria-labelledby={`${entry.id}-heading`}>
+          <div class="theme-introduction">
+            <div class="theme-copy">
+              <h2 id={`${entry.id}-heading`}>{entry.data.title}</h2>
+              <p class="central-question">{entry.data.centralQuestion}</p>
+              <p class="theme-summary">{entry.data.summary}</p>
+              <p class="method-list">{entry.data.methods.join(' · ')}</p>
+            </div>
+            {entry.data.visuals.length > 0 && (
+              <ResearchGallery slides={entry.data.visuals} label={`${entry.data.title} images`} compact />
+            )}
+          </div>
+
+          <div class="project-list">
+            {featuredProjects.map((project, index) => (
+              <ResearchProjectCard project={project} cardId={`${entry.id}-project-${index}`} />
+            ))}
+          </div>
+
+          {additionalProjects.length > 0 && (
+            <details class="additional-work">
+              <summary>Additional work</summary>
+              <div class="project-list additional-projects">
+                {additionalProjects.map((project, index) => (
+                  <ResearchProjectCard project={project} cardId={`${entry.id}-additional-${index}`} />
+                ))}
+              </div>
+            </details>
+          )}
+        </section>
+      );
+    })}
+  </div>
+
+</BaseLayout>

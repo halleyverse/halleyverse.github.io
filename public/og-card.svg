@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <rect width="1200" height="630" fill="#F3E9DD"/>
+  <rect x="72" y="72" width="1056" height="486" fill="none" stroke="#0E3254" stroke-opacity=".22"/>
+  <rect x="72" y="72" width="14" height="486" fill="#592E44"/>
+  <g transform="translate(880 310)" fill="none" stroke="#41552F" opacity=".72">
+    <circle r="104"/>
+    <ellipse rx="176" ry="58" transform="rotate(-24)"/>
+    <path d="m-130 86 258-176"/>
+  </g>
+  <g fill="#592E44">
+    <circle cx="750" cy="396" r="11"/><circle cx="880" cy="310" r="23"/><circle cx="1008" cy="220" r="9"/>
+  </g>
+  <text x="126" y="186" fill="#41552F" font-family="Arial, sans-serif" font-size="22" font-weight="700" letter-spacing="4">COMPUTATIONAL CHEMISTRY</text>
+  <text x="122" y="305" fill="#0E3254" font-family="Georgia, serif" font-size="70">Semiha Kevser Bali</text>
+  <text x="126" y="374" fill="#592E44" font-family="Arial, sans-serif" font-size="28">Molecular simulation · Drug discovery · Human health</text>
+</svg>

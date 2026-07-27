@@ -1,0 +1,38 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  image?: ImageMetadata;
+  imageAlt?: string;
+  compactDescription?: boolean;
+}
+
+const { eyebrow, title, description, image, imageAlt = '', compactDescription = false } = Astro.props;
+const hasMedia = Astro.slots.has('media') || Boolean(image);
+---
+
+<section class="page-intro shell">
+  <div class:list={['page-intro-heading', { 'has-image': hasMedia }]}>
+    <div>
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {description && <p class:list={['lede', { compact: compactDescription }]}>{description}</p>}
+    </div>
+    {Astro.slots.has('media') ? (
+      <div class="page-intro-media"><slot name="media" /></div>
+    ) : image && (
+      <figure class="page-intro-artwork">
+        <Image
+          src={image}
+          alt={imageAlt}
+          widths={[360, 540, 720]}
+          sizes="(max-width: 760px) calc(100vw - 32px), 360px"
+        />
+      </figure>
+    )}
+  </div>
+</section>

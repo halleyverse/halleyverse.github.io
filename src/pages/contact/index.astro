@@ -1,0 +1,26 @@
+---
+import PageIntro from '../../components/PageIntro.astro';
+import { site } from '../../data/site';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Contact" description="Contact details and scholarly profiles.">
+  <PageIntro
+    title="Contact me"
+    description="For research conversations, collaboration ideas, or speaking opportunities, email is the most direct way to reach me."
+    compactDescription
+  />
+
+  <section class="page-section shell contact-content" aria-label="Contact details">
+    <a class="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
+
+    <div class="profile-links" aria-label="Scholarly and social profiles">
+      {site.profiles.map((profile) => (
+        <a href={profile.url} target="_blank" rel="me noreferrer">
+          <strong>{profile.label}</strong>
+          <span aria-hidden="true">↗</span>
+        </a>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,75 @@
+---
+import { Image } from 'astro:assets';
+import portrait from '../assets/portrait-semiha-bali.jpg';
+import { education, experience, expertise } from '../data/profile';
+import { site } from '../data/site';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+---
+
+<BaseLayout>
+  <section class="home-intro shell">
+    <div class="home-hero">
+      <div class="home-copy">
+        <p class="eyebrow">Computational chemistry · Molecular modeling</p>
+        <h1>Hi! I am Semiha,</h1>
+        <p class="home-statement">and I am a computational scientist interested in modeling molecular interactions to inform drug discovery and uncover molecular mechanisms of toxicity relevant to human health.</p>
+      </div>
+      <figure class="home-portrait">
+        <Image
+          src={portrait}
+          alt={`Portrait of ${site.name}`}
+          widths={[320, 480, 640]}
+          sizes="(max-width: 760px) calc(100vw - 32px), 320px"
+          loading="eager"
+        />
+      </figure>
+    </div>
+
+  </section>
+
+  <div class="profile-content shell">
+    <div class="profile-overview">
+      <p>{site.biography}</p>
+      <p>My work spans high-performance simulation, enzyme and active-site modeling, binding-affinity estimation, and analysis of large chemical and molecular datasets in multidisciplinary settings.</p>
+    </div>
+
+    <section class="profile-section" aria-labelledby="expertise-heading">
+      <div class="profile-label"><h2 id="expertise-heading">Expertise</h2></div>
+      <div class="profile-rows">
+        {expertise.map((item) => (
+          <article class="profile-row profile-row-undated"><div><h3>{item.title}</h3><p>{item.detail}</p></div></article>
+        ))}
+      </div>
+    </section>
+
+    <section class="profile-section" aria-labelledby="experience-heading">
+      <div class="profile-label"><h2 id="experience-heading">Experience</h2></div>
+      <div class="profile-rows">
+        {experience.map((item) => (
+          <article class="profile-row profile-row-dated">
+            <span>{item.period}</span>
+            <div>
+              <h3>{item.role}</h3>
+              <p class="row-emphasis">{item.organization} · {item.location}</p>
+              <ul class="experience-bullets">{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="profile-section" aria-labelledby="education-heading">
+      <div class="profile-label"><h2 id="education-heading">Education</h2></div>
+      <div class="profile-rows">
+        {education.map((item) => (
+          <article class="profile-row profile-row-dated">
+            <span>{item.period}</span>
+            <div><h3>{item.degree}</h3><p class="row-emphasis">{item.institution}</p><p>{item.detail}</p></div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+  </div>
+</BaseLayout>

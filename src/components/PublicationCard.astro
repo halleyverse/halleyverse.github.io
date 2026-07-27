@@ -1,0 +1,40 @@
+---
+import type { Publication } from '../lib/publications';
+
+interface Props {
+  publication: Publication;
+  index?: number;
+}
+
+const { publication } = Astro.props;
+const venue = publication.journal || publication.booktitle;
+const links = [
+  publication.doi && { label: 'DOI', href: `https://doi.org/${publication.doi}` },
+  publication.url && { label: 'Article', href: publication.url },
+  publication.pdf && { label: 'PDF', href: publication.pdf },
+  publication.preprint && { label: 'Preprint', href: publication.preprint },
+  publication.code && { label: 'Code', href: publication.code },
+].filter(Boolean) as { label: string; href: string }[];
+---
+
+<article
+  class="publication-entry"
+  data-publication
+  data-year={publication.year}
+  data-type={publication.type}
+>
+  <div class="publication-side">
+    <span class="publication-year">{publication.year}</span>
+    <span class="publication-type">{publication.type}</span>
+  </div>
+  <div class="publication-body">
+    <h2>{publication.title}</h2>
+    <p class="authors">{publication.author.replace(/\s+and\s+/g, ', ')}</p>
+    {venue && <p class="venue"><em>{venue}</em>{publication.volume && ` · ${publication.volume}`}</p>}
+    {links.length > 0 && (
+      <div class="publication-links">
+        {links.map((link) => <a href={link.href} target="_blank" rel="noreferrer">{link.label} <span aria-hidden="true">↗</span></a>)}
+      </div>
+    )}
+  </div>
+</article>

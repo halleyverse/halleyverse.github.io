@@ -1,0 +1,98 @@
+---
+import type { ImageMetadata } from 'astro';
+import ResearchGallery from './ResearchGallery.astro';
+
+interface ProjectImage {
+  image: ImageMetadata;
+  alt: string;
+}
+
+interface Project {
+  title: string;
+  status: string;
+  year?: string;
+  summary: string;
+  methods: string[];
+  images: ProjectImage[];
+  doi?: string;
+  url?: string;
+}
+
+interface Props {
+  project: Project;
+  cardId: string;
+}
+
+const { project, cardId } = Astro.props;
+const detailsId = `${cardId}-details`;
+const projectUrl = project.doi ? `https://doi.org/${project.doi}` : project.url;
+const hasImages = project.images.length > 0;
+---
+
+<article class:list={['project-entry', { 'project-entry-image': hasImages }]} data-project-card={hasImages ? '' : undefined}>
+  <p class="project-meta">{[project.status, project.year].filter(Boolean).join(' · ')}</p>
+  <h3>{project.title}</h3>
+
+  {hasImages ? (
+    <div class="project-media">
+      <ResearchGallery slides={project.images} label={`${project.title} images`} compact variant="project">
+        <div class="project-overlay-layer" slot="stage-overlay">
+          <div class="project-detail-overlay" id={detailsId} aria-hidden="true">
+            <p>{project.summary}</p>
+            <p class="method-list">{project.methods.join(' · ')}</p>
+          </div>
+          <button
+            class="project-detail-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls={detailsId}
+            aria-label={`Show details for ${project.title}`}
+          >
+            <span>Details</span>
+          </button>
+        </div>
+      </ResearchGallery>
+    </div>
+  ) : (
+    <>
+      <p>{project.summary}</p>
+      <p class="method-list">{project.methods.join(' · ')}</p>
+    </>
+  )}
+
+  {projectUrl && (
+    <a class="project-link" href={projectUrl} target="_blank" rel="noreferrer">
+      {project.doi ? 'View publication' : 'Learn more'} <span aria-hidden="true">↗</span>
+    </a>
+  )}
+</article>
+
+<script>
+  document.querySelectorAll<HTMLElement>('[data-project-card]').forEach((card) => {
+    const button = card.querySelector<HTMLButtonElement>('.project-detail-toggle');
+    const overlay = card.querySelector<HTMLElement>('.project-detail-overlay');
+    if (!button || !overlay) return;
+
+    const setOpen = (open: boolean) => {
+      card.dataset.open = String(open);
+      button.setAttribute('aria-expanded', String(open));
+      button.setAttribute('aria-label', `${open ? 'Hide' : 'Show'} details for ${card.querySelector('h3')?.textContent ?? 'project'}`);
+      button.querySelector('span')!.textContent = open ? 'Close' : 'Details';
+      overlay.setAttribute('aria-hidden', String(!open));
+    };
+
+    button.addEventListener('click', () => {
+      setOpen(card.dataset.open !== 'true');
+    });
+
+    card.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && card.dataset.open === 'true') {
+        event.preventDefault();
+        setOpen(false);
+        button.focus();
+      }
+    });
+
+    setOpen(false);
+  });
+</script>

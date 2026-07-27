@@ -1,0 +1,113 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+
+interface Slide {
+  image: ImageMetadata;
+  alt: string;
+  caption?: string;
+}
+
+interface Props {
+  slides: Slide[];
+  label: string;
+  compact?: boolean;
+  variant?: 'default' | 'project';
+}
+
+const { slides, label, compact = false, variant = 'default' } = Astro.props;
+const hasControls = slides.length > 1;
+---
+
+<div
+  class:list={['research-gallery', { compact, 'project-gallery': variant === 'project', 'has-controls': hasControls }]}
+  data-gallery
+  data-slide-count={slides.length}
+  aria-label={label}
+>
+  <div
+    class="gallery-viewport"
+    data-gallery-viewport
+    tabindex={hasControls ? '0' : undefined}
+    aria-roledescription={hasControls ? 'carousel' : undefined}
+  >
+    {slides.map((slide, index) => (
+      <figure class="gallery-slide" aria-label={hasControls ? `Slide ${index + 1} of ${slides.length}` : undefined}>
+        <Image
+          src={slide.image}
+          alt={slide.alt}
+          widths={[360, 540, 720, 960]}
+          sizes={compact ? '(max-width: 760px) calc(100vw - 32px), 420px' : '(max-width: 760px) calc(100vw - 32px), 360px'}
+        />
+        {slide.caption && <figcaption>{slide.caption}</figcaption>}
+      </figure>
+    ))}
+  </div>
+
+  <slot name="stage-overlay" />
+
+  {hasControls && (
+    <div class="gallery-controls">
+      <button type="button" data-gallery-prev aria-label={`Previous image in ${label}`}>←</button>
+      <p aria-live="polite"><span data-gallery-current>1</span> / {slides.length}</p>
+      <button type="button" data-gallery-next aria-label={`Next image in ${label}`}>→</button>
+    </div>
+  )}
+</div>
+
+<script>
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach((gallery) => {
+    const viewport = gallery.querySelector<HTMLElement>('[data-gallery-viewport]');
+    const slides = [...gallery.querySelectorAll<HTMLElement>('.gallery-slide')];
+    const previous = gallery.querySelector<HTMLButtonElement>('[data-gallery-prev]');
+    const next = gallery.querySelector<HTMLButtonElement>('[data-gallery-next]');
+    const current = gallery.querySelector<HTMLElement>('[data-gallery-current]');
+
+    if (!viewport || slides.length < 2 || !previous || !next || !current) return;
+
+    let active = 0;
+
+    const update = (index: number) => {
+      active = Math.max(0, Math.min(index, slides.length - 1));
+      current.textContent = String(active + 1);
+      previous.disabled = active === 0;
+      next.disabled = active === slides.length - 1;
+    };
+
+    const goTo = (index: number) => {
+      update(index);
+      viewport.scrollTo({
+        left: active * viewport.clientWidth,
+        behavior: reducedMotion.matches ? 'auto' : 'smooth',
+      });
+    };
+
+    previous.addEventListener('click', () => goTo(active - 1));
+    next.addEventListener('click', () => goTo(active + 1));
+
+    viewport.addEventListener('keydown', (event) => {
+      if (event.key === 'ArrowLeft') {
+        event.preventDefault();
+        goTo(active - 1);
+      }
+      if (event.key === 'ArrowRight') {
+        event.preventDefault();
+        goTo(active + 1);
+      }
+    });
+
+    let scheduled = false;
+    viewport.addEventListener('scroll', () => {
+      if (scheduled) return;
+      scheduled = true;
+      requestAnimationFrame(() => {
+        update(Math.round(viewport.scrollLeft / viewport.clientWidth));
+        scheduled = false;
+      });
+    }, { passive: true });
+
+    update(0);
+  });
+</script>

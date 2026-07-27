@@ -1,0 +1,74 @@
+---
+import PageIntro from '../../components/PageIntro.astro';
+import PublicationCard from '../../components/PublicationCard.astro';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { parsePublications, publicationTypes, publicationYears } from '../../lib/publications';
+
+const publications = parsePublications();
+const types = publicationTypes(publications);
+const years = publicationYears(publications);
+---
+
+<BaseLayout title="Publications" description="Peer-reviewed publications, preprints, and related research outputs.">
+  <PageIntro
+    title="Published and ongoing work"
+  />
+
+  <section class="page-section shell">
+    {publications.length > 0 ? (
+      <>
+        <div class="publication-filters" aria-label="Publication filters">
+          <label>Year
+            <select data-filter-year>
+              <option value="all">All years</option>
+              {years.map((year) => <option value={year}>{year}</option>)}
+            </select>
+          </label>
+          <label>Type
+            <select data-filter-type>
+              <option value="all">All types</option>
+              {types.map((type) => <option value={type}>{type}</option>)}
+            </select>
+          </label>
+          <p aria-live="polite" data-result-count>{publications.length} publications</p>
+        </div>
+        <div class="publication-list" data-publication-list>
+          {publications.map((publication) => <PublicationCard publication={publication} />)}
+        </div>
+        <p class="filter-empty" data-filter-empty hidden>No publications match these filters.</p>
+      </>
+    ) : (
+      <div class="empty-state">
+        <h2>No publications are listed yet.</h2>
+        <p>Add complete entries to <code>src/data/publications.bib</code>.</p>
+      </div>
+    )}
+  </section>
+</BaseLayout>
+
+<script>
+  const yearSelect = document.querySelector<HTMLSelectElement>('[data-filter-year]');
+  const typeSelect = document.querySelector<HTMLSelectElement>('[data-filter-type]');
+  const cards = [...document.querySelectorAll<HTMLElement>('[data-publication]')];
+  const count = document.querySelector<HTMLElement>('[data-result-count]');
+  const empty = document.querySelector<HTMLElement>('[data-filter-empty]');
+
+  const update = () => {
+    const year = yearSelect?.value ?? 'all';
+    const type = typeSelect?.value ?? 'all';
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const matches = (year === 'all' || card.dataset.year === year) &&
+        (type === 'all' || card.dataset.type === type);
+      card.hidden = !matches;
+      if (matches) visible += 1;
+    });
+
+    if (count) count.textContent = `${visible} publication${visible === 1 ? '' : 's'}`;
+    if (empty) empty.hidden = visible !== 0;
+  };
+
+  yearSelect?.addEventListener('change', update);
+  typeSelect?.addEventListener('change', update);
+</script>
