@@ -1,17 +1,20 @@
 ---
 import PageIntro from '../../components/PageIntro.astro';
+import { education, experience, expertise } from '../../data/profile';
 import { site } from '../../data/site';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Contact" description="Contact details and scholarly profiles.">
+<BaseLayout title="CV & Contact" description="Contact details, professional experience, expertise, and education.">
   <PageIntro
-    title="Contact me"
+    title="CV & Contact"
     description="For research conversations, collaboration ideas, or speaking opportunities, email is the most direct way to reach me."
     compactDescription
   />
 
-  <section class="page-section shell contact-content" aria-label="Contact details">
+  <section class="page-section shell contact-content" aria-labelledby="contact-details-heading">
+    <p class="eyebrow">Get in touch</p>
+    <h2 id="contact-details-heading">Contact details</h2>
     <a class="contact-email" href={`mailto:${site.email}`}>{site.email}</a>
 
     <div class="profile-links" aria-label="Scholarly and social profiles">
@@ -23,4 +26,43 @@ import BaseLayout from '../../layouts/BaseLayout.astro';
       ))}
     </div>
   </section>
+
+  <div class="profile-content shell cv-content">
+    <section class="profile-section" aria-labelledby="expertise-heading">
+      <div class="profile-label"><h2 id="expertise-heading">Expertise</h2></div>
+      <div class="profile-rows">
+        {expertise.map((item) => (
+          <article class="profile-row profile-row-undated"><div><h3>{item.title}</h3><p>{item.detail}</p></div></article>
+        ))}
+      </div>
+    </section>
+
+    <section class="profile-section" aria-labelledby="experience-heading">
+      <div class="profile-label"><h2 id="experience-heading">Experience</h2></div>
+      <div class="profile-rows">
+        {experience.map((item) => (
+          <article class="profile-row profile-row-dated">
+            <span>{item.period}</span>
+            <div>
+              <h3>{item.role}</h3>
+              <p class="row-emphasis">{item.organization} · {item.location}</p>
+              <ul class="experience-bullets">{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
+            </div>
+          </article>
+        ))}
+      </div>
+    </section>
+
+    <section class="profile-section" aria-labelledby="education-heading">
+      <div class="profile-label"><h2 id="education-heading">Education</h2></div>
+      <div class="profile-rows">
+        {education.map((item) => (
+          <article class="profile-row profile-row-dated">
+            <span>{item.period}</span>
+            <div><h3>{item.degree}</h3><p class="row-emphasis">{item.institution}</p><p>{item.detail}</p></div>
+          </article>
+        ))}
+      </div>
+    </section>
+  </div>
 </BaseLayout>

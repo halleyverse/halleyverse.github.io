@@ -1,0 +1,41 @@
+---
+import { Image } from 'astro:assets';
+import type { PersonalProject } from '../data/personalProjects';
+
+interface Props {
+  project: PersonalProject;
+}
+
+const { project } = Astro.props;
+---
+
+<article class="personal-project-card">
+  <div class:list={['personal-project-visual', `personal-project-visual-${project.visual.kind}`]}>
+    {project.visual.kind === 'image' ? (
+      <Image
+        src={project.visual.image}
+        alt={project.visual.alt}
+        widths={[420, 640, 840]}
+        sizes="(max-width: 760px) calc(100vw - 32px), 420px"
+        loading="lazy"
+      />
+    ) : (
+      <div class="project-terminal" role="img" aria-label={project.visual.ariaLabel}>
+        <div class="terminal-chrome" aria-hidden="true"><span></span><span></span><span></span></div>
+        <pre aria-hidden="true">{project.visual.lines.join('\n')}</pre>
+      </div>
+    )}
+  </div>
+
+  <div class="personal-project-copy">
+    <p class="project-status">{project.status}</p>
+    <h3>{project.title}</h3>
+    <p>{project.summary}</p>
+    <ul class="project-technologies" aria-label={`${project.title} technologies`}>
+      {project.technologies.map((technology) => <li>{technology}</li>)}
+    </ul>
+    <a class="project-repository-link" href={project.repositoryUrl} target="_blank" rel="noreferrer">
+      {project.linkLabel}<span aria-hidden="true"> ↗</span>
+    </a>
+  </div>
+</article>

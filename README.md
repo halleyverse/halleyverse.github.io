@@ -5,8 +5,9 @@ A custom Astro research site published at `https://halleyverse.github.io`.
 ## Edit the content
 
 - Update identity, biography, contact information, and profile links in `src/data/site.ts`.
-- Update experience, education, expertise, talks, and recognition in `src/data/profile.ts`.
-- Add research entries in `src/content/research/`. Set `complete: true` to publish and `featured: true` to show an entry on the home page.
+- Update experience, education, and expertise in `src/data/profile.ts`.
+- Update personal portfolio projects in `src/data/personalProjects.ts`.
+- Add research entries in `src/content/research/`. Set `complete: true` to publish the theme and its projects.
 - Add publication records to `src/data/publications.bib`. Set `complete = {true}` to publish and `selected = {true}` to feature an entry.
 
 ## Develop locally

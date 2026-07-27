@@ -21,5 +21,5 @@ export const navigation = [
   { label: 'Home', href: '/' },
   { label: 'Research', href: '/research/' },
   { label: 'Publications', href: '/publications/' },
-  { label: 'Contact', href: '/contact/' },
+  { label: 'CV & Contact', href: '/contact/' },
 ] as const;

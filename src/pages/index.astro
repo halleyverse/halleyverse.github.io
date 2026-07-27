@@ -1,75 +1,81 @@
 ---
+import { getCollection } from 'astro:content';
 import { Image } from 'astro:assets';
 import portrait from '../assets/portrait-semiha-bali.jpg';
-import { education, experience, expertise } from '../data/profile';
+import PersonalProjectCard from '../components/PersonalProjectCard.astro';
+import { personalProjects } from '../data/personalProjects';
 import { site } from '../data/site';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
+const research = (await getCollection('research', ({ data }) => data.complete))
+  .sort((a, b) => a.data.order - b.data.order);
 ---
 
 <BaseLayout>
-  <section class="home-intro shell">
-    <div class="home-hero">
-      <div class="home-copy">
-        <p class="eyebrow">Computational chemistry · Molecular modeling</p>
-        <h1>Hi! I am Semiha,</h1>
-        <p class="home-statement">and I am a computational scientist interested in modeling molecular interactions to inform drug discovery and uncover molecular mechanisms of toxicity relevant to human health.</p>
+  <div class="home-layout shell">
+    <aside class="home-bio" aria-labelledby="home-name">
+      <div class="home-bio-inner">
+        <figure class="home-bio-portrait">
+          <Image
+            src={portrait}
+            alt={`Portrait of ${site.name}`}
+            widths={[240, 360, 480]}
+            sizes="(max-width: 860px) 180px, 240px"
+            loading="eager"
+          />
+        </figure>
+        <div class="home-bio-copy">
+          <p class="eyebrow">Computational chemistry · Molecular modeling</p>
+          <h1 id="home-name">{site.name}</h1>
+          <p class="home-professional-title">{site.professionalTitle}</p>
+          <p class="home-affiliation">{site.affiliation}</p>
+          <p class="home-biography">{site.biography}</p>
+          <p class="home-location">{site.location}</p>
+          <nav class="home-profile-links" aria-label="Professional profiles">
+            {site.profiles.map((profile) => (
+              <a href={profile.url} target="_blank" rel="me noreferrer">
+                {profile.label}<span aria-hidden="true"> ↗</span>
+              </a>
+            ))}
+          </nav>
+          <a class="home-cv-link" href="/contact/">CV &amp; Contact <span aria-hidden="true">→</span></a>
+        </div>
       </div>
-      <figure class="home-portrait">
-        <Image
-          src={portrait}
-          alt={`Portrait of ${site.name}`}
-          widths={[320, 480, 640]}
-          sizes="(max-width: 760px) calc(100vw - 32px), 320px"
-          loading="eager"
-        />
-      </figure>
+    </aside>
+
+    <div class="home-editorial">
+      <section class="home-research" aria-labelledby="home-research-heading">
+        <header class="home-section-intro">
+          <p class="eyebrow">Research overview</p>
+          <h2 id="home-research-heading">Research</h2>
+          <p>My research uses physics-based molecular modeling to understand how molecular structure, dynamics, and chemical environment govern recognition, reactivity, and biological function. I combine molecular dynamics, enhanced sampling, free-energy calculations, quantum chemistry, QM/MM, and cheminformatics across drug discovery, predictive method development, environmental toxicology, and complex biomolecular interfaces.</p>
+        </header>
+
+        <div class="home-theme-list">
+          {research.map((entry, index) => (
+            <article class="home-theme">
+              <p class="theme-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</p>
+              <div>
+                <h3><a href={`/research/#${entry.id}`}>{entry.data.title}</a></h3>
+                <p class="home-central-question">{entry.data.centralQuestion}</p>
+                <p class="home-theme-summary">{entry.data.summary}</p>
+                <a class="home-theme-link" href={`/research/#${entry.id}`}>Explore detailed projects <span aria-hidden="true">→</span></a>
+              </div>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="home-personal-projects" aria-labelledby="personal-projects-heading">
+        <header class="home-section-intro">
+          <p class="eyebrow">Built beyond the lab</p>
+          <h2 id="personal-projects-heading">Personal projects</h2>
+          <p>Independent tools and product experiments that make computational chemistry more transparent, practical, and approachable.</p>
+        </header>
+        <div class="personal-project-list">
+          {personalProjects.map((project) => <PersonalProjectCard project={project} />)}
+        </div>
+      </section>
     </div>
-
-  </section>
-
-  <div class="profile-content shell">
-    <div class="profile-overview">
-      <p>{site.biography}</p>
-      <p>My work spans high-performance simulation, enzyme and active-site modeling, binding-affinity estimation, and analysis of large chemical and molecular datasets in multidisciplinary settings.</p>
-    </div>
-
-    <section class="profile-section" aria-labelledby="expertise-heading">
-      <div class="profile-label"><h2 id="expertise-heading">Expertise</h2></div>
-      <div class="profile-rows">
-        {expertise.map((item) => (
-          <article class="profile-row profile-row-undated"><div><h3>{item.title}</h3><p>{item.detail}</p></div></article>
-        ))}
-      </div>
-    </section>
-
-    <section class="profile-section" aria-labelledby="experience-heading">
-      <div class="profile-label"><h2 id="experience-heading">Experience</h2></div>
-      <div class="profile-rows">
-        {experience.map((item) => (
-          <article class="profile-row profile-row-dated">
-            <span>{item.period}</span>
-            <div>
-              <h3>{item.role}</h3>
-              <p class="row-emphasis">{item.organization} · {item.location}</p>
-              <ul class="experience-bullets">{item.bullets.map((bullet) => <li>{bullet}</li>)}</ul>
-            </div>
-          </article>
-        ))}
-      </div>
-    </section>
-
-    <section class="profile-section" aria-labelledby="education-heading">
-      <div class="profile-label"><h2 id="education-heading">Education</h2></div>
-      <div class="profile-rows">
-        {education.map((item) => (
-          <article class="profile-row profile-row-dated">
-            <span>{item.period}</span>
-            <div><h3>{item.degree}</h3><p class="row-emphasis">{item.institution}</p><p>{item.detail}</p></div>
-          </article>
-        ))}
-      </div>
-    </section>
-
   </div>
 </BaseLayout>
