@@ -8,7 +8,7 @@ export const site = {
     'I am a computational chemist working at the intersection of molecular simulation, drug discovery, and protein-small molecule interactions. My research combines molecular dynamics, binding free-energy calculations, quantum chemistry, and cheminformatics to investigate challenging questions in human health.',
   description:
     'Semiha Kevser Bali is a computational chemist specializing in drug discovery, molecular simulation, and protein-small molecule interactions.',
-  location: 'Livermore, California',
+  
   profiles: [
     { label: 'Google Scholar', url: 'https://scholar.google.com/citations?user=f4STODwAAAAJ&hl=en' },
     { label: 'LinkedIn', url: 'https://linkedin.com/in/semiha-kevser-bali' },
