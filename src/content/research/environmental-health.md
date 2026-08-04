@@ -2,7 +2,7 @@
 title: "Environmental Molecular Toxicology"
 overview: "Molecular mechanisms by which PFAS alter endocrine proteins, nuclear-receptor complexes, and biological signaling."
 centralQuestion: "How do persistent environmental chemicals alter protein structure, signaling, and biological function?"
-<!--summary: "I use molecular modeling and cheminformatics to investigate how environmental contaminants interfere with proteins and signaling complexes involved in endocrine regulation, metabolism, and organismal health. My PFAS research connects chemical structure, molecular recognition, and conformational changes with potential disruptions of thyroid hormone synthesis, estrogen signaling, and nuclear-receptor regulation."-->
+#<!--summary: "I use molecular modeling and cheminformatics to investigate how environmental contaminants interfere with proteins and signaling complexes involved in endocrine regulation, metabolism, and organismal health. My PFAS research connects chemical structure, molecular recognition, and conformational changes with potential disruptions of thyroid hormone synthesis, estrogen signaling, and nuclear-receptor regulation."-->
 methods:
   - "PFAS"
   - "Endocrine disruption"
