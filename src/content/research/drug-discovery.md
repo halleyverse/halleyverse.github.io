@@ -2,7 +2,7 @@
 title: "Dynamic Drug Targets and Therapeutic Design"
 overview: "Protein motion, binding-site discovery, and structure-guided work across oncology, infectious disease, covalent inhibitors, and antiviral design."
 centralQuestion: "How do protein dynamics and binding-site architecture create opportunities for therapeutic intervention?"
-summary: "I investigate how protein dynamics and binding-site architecture create opportunities for therapeutic design. My work spans cryptic-pocket detection, oncology and antiviral discovery, anti-tuberculosis programs, covalent-inhibitor design, and mechanistic studies of targets such as KRAS. Across these systems, I use conformational ensembles and energetic analysis to connect molecular behavior with experimentally testable design hypotheses."
+<!-- summary: "I investigate how protein dynamics and binding-site architecture create opportunities for therapeutic design. My work spans cryptic-pocket detection, oncology and antiviral discovery, anti-tuberculosis programs, covalent-inhibitor design, and mechanistic studies of targets such as KRAS. Across these systems, I use conformational ensembles and energetic analysis to connect molecular behavior with experimentally testable design hypotheses." -->
 methods:
   - "Protein dynamics"
   - "Cryptic pockets"
@@ -61,7 +61,7 @@ projects:
     featured: true
   - title: "Cryptic binding sites and early-stage oncology discovery"
     status: "Current work"
-    summary: "Developing and evaluating computational approaches for detecting cryptic binding pockets and characterizing conformational states that may create previously inaccessible opportunities for ligand discovery. Related oncology collaborations use protein ensembles and binding hypotheses to support structure-based design while protecting confidential target details."
+    summary: "Developing and evaluating computational approaches for detecting cryptic binding pockets and characterizing conformational states that may create previously inaccessible opportunities for ligand discovery. Related oncology collaborations use protein ensembles and binding hypotheses to support structure-based design."
     methods: ["MD", "Replica-exchange MD", "Pocket detection", "Conformational analysis", "Thermodynamic integration"]
     featured: true
   - title: "Antiviral protein design"
