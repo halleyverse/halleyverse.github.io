@@ -26,7 +26,7 @@ export type PersonalProject = {
 export const personalProjects: readonly PersonalProject[] = [
   {
     title: 'ChemPlum',
-    status: 'Active portfolio project',
+    status: 'Active personal project',
     summary:
       'An offline-first Android application for drawing and validating molecular structures, generating canonical SMILES and clean depictions, calculating molecular descriptors, identifying functional groups, and running explicit PubChem searches.',
     technologies: ['Android', 'Kotlin', 'RDKit', 'PubChem'],
