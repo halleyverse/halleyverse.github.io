@@ -2,7 +2,7 @@
 title: "Predictive Molecular Modeling and Method Development"
 overview: "Reliable prediction of affinity, protonation, metal coordination, and force-field behavior through simulation and quantum chemistry."
 centralQuestion: "How reliably can computational models predict affinity, protonation, metal coordination, and molecular energetics?"
-summary: "I develop and evaluate computational approaches for reliable molecular predictions. My work combines molecular dynamics, docking, alchemical free-energy methods, quantum chemistry, and QM/MM to study binding affinity, protonation equilibria, metal coordination, force-field behavior, and reaction mechanisms. A recurring goal is to identify where a model succeeds, where it fails, and which physical assumptions control the result."
+<!--summary: "I develop and evaluate computational approaches for reliable molecular predictions. My work combines molecular dynamics, docking, alchemical free-energy methods, quantum chemistry, and QM/MM to study binding affinity, protonation equilibria, metal coordination, force-field behavior, and reaction mechanisms. A recurring goal is to identify where a model succeeds, where it fails, and which physical assumptions control the result."-->
 methods:
   - "Binding free energy"
   - "QM and QM/MM"
@@ -17,8 +17,8 @@ visuals:
 projects:
   - title: "SAMPL8 host-guest binding-energy predictions"
     status: "Submitted manuscript"
-    year: "2025-2026"
-    summary: "Evaluating binding-energy predictions by combining molecular dynamics with quantum-mechanical calculations in a blind-challenge setting, with emphasis on method benchmarking, error diagnosis, and the practical limits of molecular energy models."
+    year: "2026"
+    summary: "Evaluating binding-energy predictions by combining molecular dynamics with quantum-mechanical calculations in a blind-challenge setting, with emphasis on method benchmarking, error diagnosis, and the practical limits of molecular models."
     methods: ["MD", "Quantum chemistry", "Host-guest binding", "Benchmarking"]
     images:
       - image: "../../assets/research/theme-2/sampl-host-guest.png"
