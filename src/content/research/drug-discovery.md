@@ -54,7 +54,7 @@ projects:
         alt: "Protein structure and enlarged active-site view with labeled residues around bound compounds."
       - image: "../../assets/research/theme-1/collaboration-model-2.png"
         alt: "Superposed protein conformations with a bound ligand and highlighted peptide regions."
-      - image: "../../assets/research/theme-1/collaboration-workflow.png"
+      - image: "../../assets/research/theme-1/collaboration-workflow.png" 
         alt: "Computational workflow connecting charge models, frame sampling, and solvation models to a protein-ligand complex."
       - image: "../../assets/research/theme-1/collaboration-model-3.png"
         alt: "Molecular model of a bound compound within a labeled protein binding site."
