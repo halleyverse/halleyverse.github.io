@@ -2,6 +2,7 @@
 title: "Dynamic Drug Targets and Therapeutic Design"
 overview: "Protein motion, binding-site discovery, and structure-guided work across oncology, infectious disease, covalent inhibitors, and antiviral design."
 centralQuestion: "How do protein dynamics and binding-site architecture create opportunities for therapeutic intervention?"
+summary:
 #<!-- summary: "I investigate how protein dynamics and binding-site architecture create opportunities for therapeutic design. My work spans cryptic-pocket detection, oncology and antiviral discovery, anti-tuberculosis programs, covalent-inhibitor design, and mechanistic studies of targets such as KRAS. Across these systems, I use conformational ensembles and energetic analysis to connect molecular behavior with experimentally testable design hypotheses." -->
 methods:
   - "Protein dynamics"
