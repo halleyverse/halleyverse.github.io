@@ -40,7 +40,7 @@ export const personalProjects: readonly PersonalProject[] = [
   },
   {
     title: 'MDGoblin',
-    status: 'Active developer tool',
+    status: 'Active tool development',
     summary:
       'A transparent command-line auditor for Amber molecular-dynamics inputs. MDGoblin resolves documented defaults, builds a canonical protocol, flags unsupported behavior, and translates the supported subset into a guarded OpenMM workflow.',
     technologies: ['Python', 'Amber', 'OpenMM', 'Protocol auditing'],
