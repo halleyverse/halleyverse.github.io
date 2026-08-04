@@ -2,7 +2,7 @@
 title: "Nucleic Acids, Membranes, and Biomolecular Interfaces"
 overview: "Recognition and assembly at multicomponent interfaces involving DNA, RNA, proteins, lipids, peptides, and small molecules."
 centralQuestion: "How does a complex biomolecular environment control molecular recognition and assembly?"
-<!--summary: "I study molecular recognition in complex biomolecular environments, where nucleic acids, proteins, lipids, peptides, and small molecules interact simultaneously. These projects include DNA-targeted cancer therapeutics, RNA-small-molecule recognition, RNA-lipid interfaces, and amyloid-peptide behavior within biological membranes. Across these systems, I focus on how local environment and molecular context reshape binding, selectivity, and assembly."-->
+#<!--summary: "I study molecular recognition in complex biomolecular environments, where nucleic acids, proteins, lipids, peptides, and small molecules interact simultaneously. These projects include DNA-targeted cancer therapeutics, RNA-small-molecule recognition, RNA-lipid interfaces, and amyloid-peptide behavior within biological membranes. Across these systems, I focus on how local environment and molecular context reshape binding, selectivity, and assembly."-->
 methods:
   - "DNA recognition"
   - "RNA modeling"
