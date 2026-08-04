@@ -2,7 +2,7 @@
 title: "Predictive Molecular Modeling and Method Development"
 overview: "Reliable prediction of affinity, protonation, metal coordination, and force-field behavior through simulation and quantum chemistry."
 centralQuestion: "How reliably can computational models predict affinity, protonation, metal coordination, and molecular energetics?"
-summary: 
+summary: " "
 #<!--summary: "I develop and evaluate computational approaches for reliable molecular predictions. My work combines molecular dynamics, docking, alchemical free-energy methods, quantum chemistry, and QM/MM to study binding affinity, protonation equilibria, metal coordination, force-field behavior, and reaction mechanisms. A recurring goal is to identify where a model succeeds, where it fails, and which physical assumptions control the result."-->
 methods:
   - "Binding free energy"
